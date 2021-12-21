@@ -26,14 +26,13 @@ JUnit에 내장된 실행자를 사용하지 않고, 스프링 실행자를 사�
 @WebMvcTest(controllers = HelloController.class)
 public class HelloControllerTest {
 
-    // 객체 자동 생성
-    @Autowired
-
     /*
     1) 웹API 테스트에 사용
     2) 스프링MVC 테스트의 시작점
     3) 이 클래스를 통해 HTTP GET, POST 등에 대한 API 테스트를 할 수 있음
     */
+    // 객체 자동 생성
+    @Autowired
     private MockMvc mvc;
 
     @Test
