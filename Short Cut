@@ -1,2 +1,4 @@
 # 책에 나온 단축키
 Ctrl + Shift + A : Action 검색
+Ctrl + K         : commit
+Ctrl + Shift + K : push
