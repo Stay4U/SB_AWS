@@ -1,4 +1,6 @@
-# 책에 나온 단축키
+# 사용했던 단축키
 Ctrl + Shift + A : Action 검색
 Ctrl + K         : commit
 Ctrl + Shift + K : push
+Ctrl + Alt + S   : 설정
+Shift + F6       : 패키지명 변경
