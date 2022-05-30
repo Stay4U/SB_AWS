@@ -7,11 +7,13 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.tistory.aphrodisiac.web.HelloController;
-
+import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+//import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+
+import com.tistory.aphrodisiac.web.HelloController;
 
 /*
 JUnit에 내장된 실행자를 사용하지 않고, 스프링 실행자를 사용하도록 한다.
@@ -42,5 +44,27 @@ public class HelloControllerTest {
         mvc.perform(get("/hello"))         // MockMvc를 통해 /hello 주소로 HTTP GET 요청함
                 .andExpect(status().isOk())          // mvc.perform의 결과 검증, HTTP Header의 Status를 검증, 200인지 아닌지 검증
                 .andExpect(content().string(hello)); // mvc.perform의 결과 검증, 응답 본문의 내용 검증, Controller에서 "hello"를 리턴하기 때문에 이 값이 맞는지 검증
+    }
+
+    @Test
+    public void helloDto가_리턴된다() throws Exception{
+        String name = "hello";
+        int amount = 1000;
+
+        /*
+        param
+        : API테스트에 사용될 요청 파라미터를 설정, 단 String만 허용(숫자/날짜 등의 데이터를 등록할 때에도 문자열로 변경필요)
+
+        jsonPath
+        : JSON응답값을 필드별로 검증할 수 있는 메소드
+        : $를 기준으로 필드명을 명시
+         */
+        mvc.perform(
+                    get("/hello/dto")
+                        .param("name", name)
+                        .param("amount", String.valueOf(amount)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is(name)))
+                .andExpect(jsonPath("$.amount", is(amount)));
     }
 }
