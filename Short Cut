@@ -4,3 +4,6 @@ Ctrl + K         : commit
 Ctrl + Shift + K : push
 Ctrl + Alt + S   : 설정
 Shift + F6       : 패키지명 변경
+Shift + Ctrl + N : 파일명검색
+Ctrl + E         : 최근 열었던 파일 목록
+Ctrl + Shift + E : 최근 수정했던 파일 목록
